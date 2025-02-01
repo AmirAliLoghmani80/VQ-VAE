@@ -13,7 +13,7 @@ transform = torchvision.transforms.Compose([
 
 def train_loader_fn(batch_size):
     # Change this path to the location of your CelebA dataset on Kaggle
-    celeba_path = "/kaggle/input/celeba-dataset/img_align_celeba"
+    celeba_path = "/kaggle/input/celeba-dataset"
 
     # Using CelebA dataset from torchvision.datasets
     celeba_data = datasets.CelebA(root=celeba_path, split="train", transform=transform)
