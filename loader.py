@@ -1,5 +1,8 @@
 import torchvision
 import torch
+from torch.utils.data import DataLoader
+from torchvision import datasets
+
 img_size=64
 transform = torchvision.transforms.Compose([
     torchvision.transforms.Resize((img_size, img_size)),
@@ -14,10 +17,12 @@ transform = torchvision.transforms.Compose([
 
 
 def train_loader_fn(batch_size):
-    '''
-    It loads the training dataset. Takes one parameter:
-    batch_size: The batch size to be used during training
-    '''
-    train_dataset = torchvision.datasets.ImageFolder(root="~/torch_datasets/img_align_celeba", transform=transform)
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+
+    # train_dataset = torchvision.datasets.ImageFolder(root="~/torch_datasets/img_align_celeba", transform=transform)
+    # train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    celeba_data = datasets.CelebA(root="/content/celeba", split="train", transform=transform)
+
+    # You can access the data with a DataLoader
+
+    train_loader = DataLoader(celeba_data, batch_size=batch_size, shuffle=True)
     return train_loader
